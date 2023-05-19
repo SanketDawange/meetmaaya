@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="{% static 'bootstrap5/min.css' %}">
+    <style>
+        body {
+            background-color: #a2cbf4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Signup</h2>
+        <div class="mt-3"></div>
+
+        <form  method="post" action="/" id="signupForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mt-3"></div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mt-3"></div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="pass1" required>
+            </div>
+            <div class="mt-3"></div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" name="pass2" required>
+            </div>
+            <div class="mt-3"></div>
+            <div class="d-flex align-items-center justify-content-center">
+                <button style="width: 100%;" type="submit" class="btn btn-primary">Signup</button>
+            </div>
+           <p>Already have an account?  <a href="/signin">SignIn</a></p>
+        </form>
+    </div>
+
+    <script src="{% static 'jquery/main.js' %}"></script>
+    <script src="{% static 'bootstrap5/min.js' %}"></script>
+    <script>
+    </script>
+</body>
+
+</html>
