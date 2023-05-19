@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
 # Create your views here.
-
 
 @csrf_exempt
 def register(request):
+    if request.user.is_authenticated == True:
+        return redirect("dashboard")
     if request.method=="POST":
         username =request.POST.get('username')
         email =request.POST.get('email')
@@ -53,21 +53,28 @@ def signin(request):
 
     return render(request, "signin.html")
 
-@login_required
 def dashboard(request):
+
+    if request.user.is_authenticated == False:
+        return redirect("signin")
+    
     return render(request, "dashboard.html")
 
-@login_required
 def videocall(request):
+    
+    if request.user.is_authenticated == False:
+        return redirect("signin")
     return render(request, "videocall.html", {'name':request.user.username})
 
-@login_required
 def logout_user(request):
     logout(request)
     return redirect("signin")
 
-@login_required
 def join_room(request):
+    
+    if request.user.is_authenticated == False:
+        return redirect("signin")
+    
     if request.method == 'POST':
         room_id =request.POST.get('room_id')
         return redirect("/meeting?roomID="+room_id)
