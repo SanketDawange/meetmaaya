@@ -4,6 +4,7 @@
 
 <head>
   <title>Dashboard</title>
+    <link rel="shortcut icon" href="{% static 'media/images/logo.png' %}" />
   <link rel="stylesheet" href="{% static 'bootstrap5/min.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
@@ -125,7 +126,7 @@
 
 <body>
   <div class="container">
-    <h2 class="text-center mb-4">Dashboard, {{user.username}}</h2>
+    <h2 class="text-center mb-4"><img height="50px" width="50px" src="{% static 'media/images/logo.png' %}" alt="">Dashboard, {{user.username}}</h2>
     <div class="row">
       <div class="col-md-6">
         <a href="/meeting" class="btn btn-success btn-block">
