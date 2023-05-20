@@ -1,3 +1,4 @@
+{% load static %}
 <html>
 
 <head>
@@ -15,8 +16,8 @@
     <div id="root"></div>
 </body>
 <!--add whiteboard plugins before UIKits SDK -->
-<script src="https://unpkg.com/zego-superboard-web@2.8.1/index.js"></script>
-<script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+<script src="{% static 'zego_cloud/WhiteBoard.js' %}"></script>
+<script src="{% static 'zego_cloud/UIKit.js' %}"></script>
 
 <script>
     window.onload = function () {
