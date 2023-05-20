@@ -19,12 +19,12 @@ def register(request):
         # if pass word do not match
         if pass1 != pass2:
             messages.warning(request, "Password do not match")
-            return redirect('signup')
+            return redirect('register')
 
         # if the username is already taken
         if User.objects.filter(username = username).exists():
             messages.warning(request, "Username already exist")
-            return redirect('signup')
+            return redirect('register')
 
         # if new user is registering 
         myuser=User.objects.create_user(username,email,pass1)

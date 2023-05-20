@@ -5,9 +5,11 @@
 <head>
   <title>Dashboard</title>
   <link rel="stylesheet" href="{% static 'bootstrap5/min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     body {
       background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
     }
 
     .container {
@@ -15,9 +17,108 @@
       margin: 0 auto;
       margin-top: 100px;
       padding: 20px;
-      border: 1px solid #dee2e6;
       border-radius: 4px;
       background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .btn-success {
+      color: #fff;
+      background-color: #6bbf41;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #4d932d;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-danger {
+      color: #fff;
+      background-color: #dc3545;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background-color: #6c757d;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-4 {
+      margin-bottom: 30px;
+    }
+
+    .row {
+      margin-top: 20px;
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-right: 10px;
+    }
+
+    .icon-green {
+      color: #6bbf41;
+    }
+
+    .icon-blue {
+      color: #007bff;
+    }
+
+    .icon-red {
+      color: #dc3545;
+    }
+
+    .icon-gray {
+      color: #6c757d;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 576px) {
+      .container {
+        margin-top: 50px;
+      }
+
+      .icon {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -27,26 +128,30 @@
     <h2 class="text-center mb-4">Dashboard, {{user.username}}</h2>
     <div class="row">
       <div class="col-md-6">
-        <a href="/meeting" class="btn btn-success btn-block">Create Meeting</a>
+        <a href="/meeting" class="btn btn-success btn-block">
+          <i class="fas fa-plus-circle icon icon-green"></i>Create Meeting
+        </a>
       </div>
       <div class="col-md-6">
-        <a id="joinMeetingBtn" href="/join_room" class="btn btn-primary btn-block">Join Meeting</a>
+        <a id="joinMeetingBtn" href="/join_room" class="btn btn-primary btn-block">
+          <i class="fas fa-sign-in-alt icon icon-blue"></i>Join Meeting
+        </a>
       </div>
-      <div class="mt-3"></div>
       <div class="col-md-6">
-        <a href="/logout_user" class="btn btn-danger btn-block">Log Out</a>
+        <a href="/logout_user" class="btn btn-danger btn-block">
+          <i class="fas fa-sign-out-alt icon icon-red"></i>Log Out
+        </a>
       </div>
-
       <div class="col-md-6">
-        <a href="/avatar" class="btn btn-secondary btn-block">Avatar</a>
+        <a href="/avatar" class="btn btn-secondary btn-block">
+          <i class="fas fa-user icon icon-gray"></i>Avatar
+        </a>
       </div>
     </div>
   </div>
 
   <script src="{% static 'jquery/main.js' %}"></script>
   <script src="{% static 'bootstrap5/min.js' %}"></script>
-  <script>
-  </script>
 </body>
 
 </html>

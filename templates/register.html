@@ -27,7 +27,6 @@
                 transform: translateY(20px);
                 opacity: 0;
             }
-
             100% {
                 transform: translateY(0);
                 opacity: 1;
@@ -111,22 +110,33 @@
         .signin-link:hover {
             text-decoration: underline;
         }
-
-        @media (max-width: 576px) {
+         /* Responsive styles */
+         @media (max-width: 350px) {
             .container {
-                margin: 0;
                 width: 100%;
-                max-width: none;
-                border-radius: 0;
-                box-shadow: none;
+                margin-top: 20px;
             }
         }
+        
+        .alert-error{
+            background-color: coral;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
         <h2 class="text-center mb-4">Signup</h2>
+        <div id="message-box" class="col-md-8">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %} alert-dismissible fade show"
+                role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
         <form method="post" action="/" id="signupForm">
             {% csrf_token %}
             <div class="form-group">
