@@ -47,7 +47,7 @@
         zp.joinRoom({
             container: document.querySelector("#root"),
             sharedLinks: [{
-                name: 'Personal link',
+                name: 'Share link',
                 url: window.location.protocol + '//' + window.location.host + window.location.pathname + '?roomID=' + roomID,
             }],
             scenario: {
@@ -68,7 +68,7 @@
             whiteboardConfig: {
                 showAddImageButton: true,
             },
-            
+
             videoResolutionList: [
                 ZegoUIKitPrebuilt.VideoResolution_360P,
                 ZegoUIKitPrebuilt.VideoResolution_180P,
