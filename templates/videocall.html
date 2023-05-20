@@ -62,12 +62,20 @@
             showScreenSharingButton: true,
             showTextChat: true,
             showUserList: true,
-            maxUsers: 50,
+            maxUsers: 100,
             layout: "Grid",
             showLayoutButton: true,
             whiteboardConfig: {
                 showAddImageButton: true,
-            }
+            },
+            
+            videoResolutionList: [
+                ZegoUIKitPrebuilt.VideoResolution_360P,
+                ZegoUIKitPrebuilt.VideoResolution_180P,
+                ZegoUIKitPrebuilt.VideoResolution_480P,
+                ZegoUIKitPrebuilt.VideoResolution_720P,
+            ],
+            videoResolutionDefault: ZegoUIKitPrebuilt.VideoResolution_360P,
 
         });
 
