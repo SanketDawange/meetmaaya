@@ -30,7 +30,7 @@ def register(request):
         myuser=User.objects.create_user(username,email,pass1)
         myuser.save()
 
-        messages.success(request, "Your account has been created successfully, Thanks for registring on Event+")
+        messages.success(request, "Your account has been created successfully, Thanks for registring on MeetMaaya")
         # redirect user to login page after regiatred
         return redirect('signin')
     return render(request, "register.html")
@@ -80,3 +80,10 @@ def join_room(request):
         return redirect("/meeting?roomID="+room_id)
         
     return render(request,"join_room.html",  {'name':request.user.username})
+
+def avatar(request):
+    
+    if request.user.is_authenticated == False:
+        return redirect("signin")
+    
+    return render(request, "avatar.html")

@@ -1,11 +1,12 @@
- <html>
+<html>
 
 <head>
+    <title>Meeting</title>
     <style>
         #root {
             width: 100vw;
             height: 100vh;
-            }
+        }
     </style>
 </head>
 
@@ -13,15 +14,18 @@
 <body>
     <div id="root"></div>
 </body>
+<!--add whiteboard plugins before UIKits SDK -->
+<script src="https://unpkg.com/zego-superboard-web@2.8.1/index.js"></script>
 <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+
 <script>
-window.onload = function () {
-    function getUrlParams(url) {
-        let urlStr = url.split('?')[1];
-        const urlSearchParams = new URLSearchParams(urlStr);
-        const result = Object.fromEntries(urlSearchParams.entries());
-        return result;
-    }
+    window.onload = function () {
+        function getUrlParams(url) {
+            let urlStr = url.split('?')[1];
+            const urlSearchParams = new URLSearchParams(urlStr);
+            const result = Object.fromEntries(urlSearchParams.entries());
+            return result;
+        }
 
 
         // Generate a Token by calling a method.
@@ -30,39 +34,44 @@ window.onload = function () {
         // @param 3: Room ID
         // @param 4: User ID
         // @param 5: Username
-    const roomID = getUrlParams(window.location.href)['roomID'] || (Math.floor(Math.random() * 10000) + "");
-    const userID = Math.floor(Math.random() * 10000) + "";
-    const userName = '{{name}}';
-    const appID = 1232846505;
-    const serverSecret = "cdbd8767331108eb489ac9388adfe488";
-    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, userName);
+        const roomID = getUrlParams(window.location.href)['roomID'] || (Math.floor(Math.random() * 10000) + "");
+        const userID = Math.floor(Math.random() * 10000) + "";
+        const userName = '{{name}}';
+        const appID = 1232846505;
+        const serverSecret = "cdbd8767331108eb489ac9388adfe488";
+        const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, userName);
 
-    
+
         const zp = ZegoUIKitPrebuilt.create(kitToken);
         zp.joinRoom({
             container: document.querySelector("#root"),
             sharedLinks: [{
                 name: 'Personal link',
-                url: window.location.protocol + '//' + window.location.host  + window.location.pathname + '?roomID=' + roomID,
+                url: window.location.protocol + '//' + window.location.host + window.location.pathname + '?roomID=' + roomID,
             }],
             scenario: {
                 mode: ZegoUIKitPrebuilt.VideoConference,
             },
-                
-           	turnOnMicrophoneWhenJoining: false,
-           	turnOnCameraWhenJoining: false,
-           	showMyCameraToggleButton: true,
-           	showMyMicrophoneToggleButton: true,
-           	showAudioVideoSettingsButton: true,
-           	showScreenSharingButton: true,
-           	showTextChat: true,
-           	showUserList: true,
-           	maxUsers: 50,
-           	layout: "Grid",
-           	showLayoutButton: true,
-         
-            });
-}
+
+            turnOnMicrophoneWhenJoining: false,
+            turnOnCameraWhenJoining: false,
+            showMyCameraToggleButton: true,
+            showMyMicrophoneToggleButton: true,
+            showAudioVideoSettingsButton: true,
+            showScreenSharingButton: true,
+            showTextChat: true,
+            showUserList: true,
+            maxUsers: 50,
+            layout: "Grid",
+            showLayoutButton: true,
+            whiteboardConfig: {
+                showAddImageButton: true,
+            }
+
+        });
+
+        zp.addPlugins({ ZegoSuperBoardManager });
+    }
 </script>
 
 </html>

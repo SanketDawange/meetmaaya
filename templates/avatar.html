@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Avatar Page</h1>
+        <div class="text-center">
+            <button id="createAvatarBtn" class="btn btn-primary">Create Avatar</button>
+        </div>
+        <div class="text-center mt-3">
+            <canvas id="avatarCanvas"></canvas>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Function to process the captured image and create the avatar
+        function processImage(imageData) {
+            // You can use a JavaScript or jQuery plugin to process the image and create the avatar
+            // Here's an example of simply displaying the captured image on a canvas
+            const canvas = document.getElementById('avatarCanvas');
+            const ctx = canvas.getContext('2d');
+
+            const img = new Image();
+            img.src = imageData;
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+            };
+        }
+
+        // Function to handle the button click and open the camera for capturing the selfie
+        function openCamera() {
+            const constraints = { video: true };
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(stream) {
+                    const video = document.createElement('video');
+                    video.srcObject = stream;
+                    video.play();
+
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Set the canvas dimensions to match the video stream
+                    video.addEventListener('loadedmetadata', function() {
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                    });
+
+                    // Capture the current video frame when the button is clicked
+                    $('#createAvatarBtn').on('click', function() {
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        const capturedImage = canvas.toDataURL('image/png');
+
+                        // Stop the video stream and close the camera
+                        video.pause();
+                        video.srcObject = null;
+                        stream.getTracks()[0].stop();
+
+                        processImage(capturedImage);
+                    });
+                })
+                .catch(function(error) {
+                    console.log('Error accessing camera: ', error);
+                });
+        }
+
+        // Attach the click event handler to the Create Avatar button
+        $(document).ready(function() {
+            $('#createAvatarBtn').on('click', openCamera);
+        });
+    </script>
+</body>
+</html>
