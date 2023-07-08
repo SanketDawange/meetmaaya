@@ -11,4 +11,6 @@ urlpatterns = [
     path('meeting', views.videocall, name='videocall'),
     path('logout_user', views.logout_user, name='logout_user'),
     path('join_room', views.join_room, name='join_room'),
+    
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

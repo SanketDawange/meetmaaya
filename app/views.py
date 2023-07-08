@@ -80,3 +80,13 @@ def join_room(request):
         return redirect("/meeting?roomID="+room_id)
         
     return render(request,"join_room.html",  {'name':request.user.username})
+
+
+
+
+
+
+
+
+
+
